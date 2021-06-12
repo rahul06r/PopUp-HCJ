@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background: #060c21;
+    }
+    
+    .container {
+        position: relative;
+        width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .container .box {
+        position: relative;
+        height: 400px;
+        background: #060c21;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid#000;
+    }
+    
+    .container .box::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: #fff;
+        transform: skew(2deg, 2deg);
+        z-index: -1;
+    }
+    
+    .container .box:nth-child(1)::before {
+        background: linear-gradient(315deg, #f00, #f00);
+    }
+    
+    .content {
+        position: relative;
+        padding: 20px;
+    }
+    
+    .box .content h2 {
+        position: absolute;
+        top: -60px;
+        right: 20px;
+        margin: 0;
+        padding: 0;
+        font-size: 10em;
+        color: #ffffff;
+        transition: 0.5s;
+    }
+    
+    .box:hover h2 {
+        top: -170px;
+    }
+    
+    .box:nth-child(1):hover h2 {
+        color: #f00;
+    }
+    
+    .box:hover .content h3 {
+        transform: translateY(-10px);
+        font-weight: bold;
+        color: #f00;
+    }
+    
+    .box .content h3 {
+        margin: 0 0 10px;
+        padding: 0;
+        font-size: 34px;
+        font-weight: 500;
+        color: #ffffff;
+        transition: .5s;
+    }
+    
+    .box .content p {
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        font-size: 16px;
+    }
+    
+    .box .content a {
+        position: relative;
+        margin: 20px 0 0;
+        padding: 10px 20px;
+        text-decoration: none;
+        border: 1px solid #ffffff;
+        display: inline-block;
+        color: #000000;
+        font-weight: bold;
+        background: #ffffff;
+        transition: 0.9s;
+        transform: translateY(-40px);
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .box:hover .content a {
+        transform: translateY(20px);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .popup {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #060c21;
+        width: 20%;
+        height: 300px;
+        text-align: center;
+        line-height: 100px;
+        border: 2px solid #f00;
+        box-shadow: 10px 10px 20px #222222, -10px 10px 20px #111111, 0px -10px 20px #222222;
+        color: #000;
+        font-weight: bold;
+        font-size: 30px;
+        border-radius: 30%;
+        opacity: 0;
+        transition: .6s;
+        visibility: hidden;
+    }
+    
+    .popup a {
+        padding: 5px 10px;
+        width: 30%;
+        height: 10%;
+        text-decoration: none;
+        border: .5px solid #ecdede;
+        color: #000000;
+        font-weight: 600;
+        background: #f00;
+        transition: 0.5s;
+        border-radius: 10%;
+        font-size: 20px;
+    }
+    
+    .container.active1 {
+        filter: blur(20px);
+        user-select: none;
+        transition: .10s;
+    }
+    
+    .popup.active {
+        top: 50%;
+        visibility: visible;
+        opacity: 1;
+        transition: .5s;
+    }
+    
+    .popup span {
+        color: #ff0;
+    }
+    
+    .popup p {
+        color: #fff;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+
+        <div class="box">
+            <div class="content">
+                <h2>01</h2>
+                <h3>One</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere rerum minus culpa. Repudiandae obcaecati aliquid fugiat, enim eveniet modi aliquam alias ab nobis maiores, adipisci quam incidunt eum odit ea.</p>
+                <a href="#" onclick="toggle()">Read more</a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="popup">
+        <div class="popup_content">
+            <span>Follow</span>
+            <p> @Flutter boy_dev</p>
+        </div>
+
+        <a href="#" onclick="toggle()">Close</a>
+    </div>
+    <script>
+        function toggle() {
+            var container = document.querySelector(".container");
+            var popup = document.querySelector(".popup");
+            popup.classList.toggle("active");
+            container.classList.toggle("active1");
+        }
+    </script>
+</body>
+
+</html>
